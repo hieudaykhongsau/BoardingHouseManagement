@@ -1,0 +1,118 @@
+.chart-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.btn-detail {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-detail:hover {
+  text-decoration: underline;
+}
+
+.chart-area {
+  flex: 1;
+  min-height: 250px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.chart-y-axis {
+  position: absolute;
+  inset: 16px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.grid-line {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.chart-bars {
+  position: absolute;
+  inset: 16px 16px 32px 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  z-index: 10;
+}
+
+.bar-group {
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bar.electric {
+  width: 100%;
+  background: rgba(99, 102, 241, 0.8);
+  border-radius: 4px 4px 0 0;
+}
+
+.chart-x-axis {
+  position: absolute;
+  bottom: 8px;
+  inset-inline: 16px;
+  display: flex;
+  justify-content: space-around;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend-electric {
+  background: rgba(99, 102, 241, 1);
+}
+
+.legend-water {
+  background: rgba(14, 165, 233, 1);
+}
