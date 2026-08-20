@@ -9,7 +9,7 @@ const Sidebar = () => {
     const {pathname} = useLocation();
   return (
     <aside className="sidebar glass-panel">
-        <NavLink to="/" className="sidebar-header">
+        <NavLink to="/dashboard" className="sidebar-header">
           <div className="logo-icon">
             <HomeIcon />
           </div>
@@ -17,7 +17,7 @@ const Sidebar = () => {
         </NavLink>
       
       <nav className="sidebar-nav">
-        <NavLink to="/" className={getNavClass('/')}>
+        <NavLink to="/dashboard" className={getNavClass(pathname, '/dashboard')}>
           <LayoutDashboard className="nav-icon" />
           Bảng điều khiển
         </NavLink>

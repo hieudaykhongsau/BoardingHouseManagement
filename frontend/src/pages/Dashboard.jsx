@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import FinancialCards from '../components/FinancialCards';
 import ConsumptionChart from '../components/ConsumptionChart';
 import RoomInfo from '../components/RoomInfo';
-import './Dashboard.css';
+import '../assets/css/Dashboard.css';
 
 const Dashboard = () => {
     return (
