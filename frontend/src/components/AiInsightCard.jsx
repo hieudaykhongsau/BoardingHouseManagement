@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AiInsightCard = () => (
   <div className="ai-insight-card">
     {/* decorative background icon */}

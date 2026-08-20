@@ -113,7 +113,7 @@ const HomePage = () => {
                         ))}
                     </div>
                     <blockquote>
-                        "V-Rentals đã thay đổi hoàn toàn cách tôi quản lý căn hộ cho thuê. Mọi thứ từ hóa đơn đến giao tiếp với khách thuê đều trở nên đơn giản và chuyên nghiệp hơn rất nhiều."
+                        &quot;V-Rentals đã thay đổi hoàn toàn cách tôi quản lý căn hộ cho thuê. Mọi thứ từ hóa đơn đến giao tiếp với khách thuê đều trở nên đơn giản và chuyên nghiệp hơn rất nhiều.&quot;
                     </blockquote>
 
                     <div className="testimonial-author">

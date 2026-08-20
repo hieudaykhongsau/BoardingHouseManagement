@@ -1,4 +1,3 @@
-import React from 'react';
 
 const PaymentMethodsCard = () => (
   <div className="payment-methods-card glass-card">

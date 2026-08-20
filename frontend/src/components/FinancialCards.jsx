@@ -1,4 +1,3 @@
-import React from 'react';
 import '../assets/css/FinancialCards.css';
 
 const FinancialCards = () => {

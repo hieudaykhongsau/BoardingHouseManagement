@@ -1,5 +1,4 @@
 import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
 import InvoiceMainCard from '../components/InvoiceMainCard';
 import AiInsightCard from '../components/AiInsightCard';
 import PaymentMethodsCard from '../components/PaymentMethodsCard';

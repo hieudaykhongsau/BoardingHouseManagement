@@ -1,4 +1,3 @@
-import React from 'react';
 import '../assets/css/RecentInvoices.css';
 import { invoicesData } from '../data/mockData';
 

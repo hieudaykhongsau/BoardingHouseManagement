@@ -1,4 +1,3 @@
-import React from 'react';
 import { ReceiptText } from 'lucide-react';
 import { currentInvoice } from '../data/mockData';
 

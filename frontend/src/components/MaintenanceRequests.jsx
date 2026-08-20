@@ -1,4 +1,3 @@
-import React from 'react';
 import { maintenanceData } from '../data/mockData';
 import '../assets/css/MaintenanceRequests.css';
 
