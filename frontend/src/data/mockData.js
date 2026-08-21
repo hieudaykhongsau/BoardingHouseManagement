@@ -45,6 +45,13 @@ export const invoiceHistory = [
   { period: "03/2026", total: 4050000, paidDate: "03/04/2026", status: "Paid" },
 ];
 
+export const bankInfo = {
+  bankName: "MB Bank",
+  accountNumber: "0987654321",
+  accountName: "V-RENTALS MANAGEMENT",
+  transferContent: "BILL_T08_2026_P301",
+};
+
 export const maintenanceData = [
   { id: "REQ-015", issue: "Điều hòa không mát", date: "15/07/2026", status: "Resolved" },
   { id: "REQ-016", issue: "Bóng đèn nhà tắm hỏng", date: "05/08/2026", status: "Pending" },
