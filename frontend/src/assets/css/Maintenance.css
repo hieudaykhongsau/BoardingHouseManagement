@@ -1,0 +1,317 @@
+.maintenance-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+
+.maintenance-left {
+    grid-column: span 8;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.maintenance-right {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+    .maintenance-left, .maintenance-right {
+        grid-column: span 12;
+    }
+}
+
+.contact-card, .rules-card, .support-form-card {
+    padding: 24px;
+}
+
+.section-header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-box.primary {
+    background: rgba(130, 200, 253, 0.15);
+    color: var(--indigo-text);
+}
+
+.icon-box.secondary {
+    background: rgba(0, 200, 180, 0.15);
+    color: #00c8b4;
+}
+
+.icon-box.accent {
+    background: rgba(226, 232, 240, 0.15);
+    color: var(--accent);
+}
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contact-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.3s;
+}
+
+.contact-box:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.contact-box.full-width {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-box.urgent {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.contact-box.urgent:hover {
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.contact-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.contact-label.urgent-text {
+    color: var(--error-text);
+}
+
+.contact-val {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.contact-val.primary-text {
+    color: var(--indigo-text);
+}
+
+.action-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn.call {
+    background: rgba(130, 200, 253, 0.1);
+    color: var(--indigo-text);
+}
+
+.action-btn.call:hover {
+    background: var(--indigo-text);
+    color: var(--bg-base);
+}
+
+.action-btn.urgent-call {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error-text);
+}
+
+.action-btn.urgent-call:hover {
+    background: var(--error-text);
+    color: var(--bg-base);
+}
+
+/* Rules Section */
+.rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.rule-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.3s;
+}
+
+.rule-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.rule-icon {
+    color: #00c8b4;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.rule-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.rule-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Form Section */
+.support-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2394A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+.form-select option {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+}
+
+.radio-group {
+    display: flex;
+    gap: 24px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.radio-label.urgent-radio {
+    color: var(--error-text);
+}
+
+.radio-input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--indigo-text);
+    cursor: pointer;
+}
+
+.radio-input.urgent-radio-input {
+    accent-color: var(--error-text);
+}
+
+.file-upload-box {
+    border: 2px dashed var(--glass-border);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.file-upload-box:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.file-upload-icon {
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.file-upload-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.file-upload-text span {
+    color: var(--indigo-text);
+    font-weight: 500;
+}
+
+.file-upload-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.submit-btn {
+    margin-top: 8px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+}

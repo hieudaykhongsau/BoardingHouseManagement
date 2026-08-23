@@ -1,4 +1,4 @@
-import { HomeIcon, LayoutDashboard, ReceiptText, Wrench, ChartColumn } from "lucide-react";
+import { HomeIcon, LayoutDashboard, ReceiptText, Wrench, ChartColumn, UserPen } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import '../assets/css/Sidebar.css';
 import { tenantData } from '../data/mockData';
@@ -28,6 +28,10 @@ const Sidebar = () => {
                 <NavLink to="/reports" className={getNavClass(pathname, '/reports')}>
                     <ChartColumn />
                     Thống kê chi tiêu
+                </NavLink>
+                <NavLink to="/profiles" className={getNavClass(pathname, '/profiles')}>
+                    <UserPen />
+                    Hồ sơ
                 </NavLink>
                 <NavLink to="/maintenance" className={getNavClass(pathname, '/maintenance')}>
                     <Wrench className="nav-icon" />
