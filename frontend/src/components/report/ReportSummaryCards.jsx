@@ -1,6 +1,6 @@
-import '../assets/css/Reports.css';
+import '../../assets/css/Reports.css';
 import {House, Zap, Droplet, Banknote} from 'lucide-react'
-import TrendIcon from '../ui/TrendIcon';
+import TrendIcon from '../../ui/TrendIcon';
 const mockSummaryData = [
     {
         label: 'Tiền thuê nhà',

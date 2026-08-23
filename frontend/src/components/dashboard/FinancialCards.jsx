@@ -1,5 +1,5 @@
-import '../assets/css/FinancialCards.css';
-import TrendIcon from '../ui/TrendIcon';
+import '../../assets/css/FinancialCards.css';
+import TrendIcon from '../../ui/TrendIcon';
 import { ReceiptText, Zap, Droplet } from 'lucide-react';
 const FinancialCards = () => {
     return (

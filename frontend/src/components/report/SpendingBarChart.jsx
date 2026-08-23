@@ -1,4 +1,4 @@
-import '../assets/css/Reports.css';
+import '../../assets/css/Reports.css';
 
 const barData = [
     { month: 'Th 12', value: 13200000, height: 60, isCurrent: false },

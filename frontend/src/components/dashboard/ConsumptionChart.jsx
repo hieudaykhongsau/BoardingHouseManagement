@@ -1,4 +1,4 @@
-import '../assets/css/ConsumptionChart.css';
+import '../../assets/css/ConsumptionChart.css';
 
 const ConsumptionChart = () => {
     return (

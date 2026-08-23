@@ -1,4 +1,4 @@
-import '../assets/css/Reports.css';
+import '../../assets/css/Reports.css';
 import {Sparkles} from 'lucide-react'
 const AIHabitsCard = () => {
     return (

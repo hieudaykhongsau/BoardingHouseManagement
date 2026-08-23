@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import Sidebar from '../components/Sidebar';
-import InvoiceMainCard from '../components/InvoiceMainCard';
-import AiInsightCard from '../components/AiInsightCard';
-import PaymentMethodsCard from '../components/PaymentMethodsCard';
-import BillingHistoryTable from '../components/BillingHistoryTable';
+import Sidebar from '../components/common/Sidebar';
+import InvoiceMainCard from '../components/invoice/InvoiceMainCard';
+import AiInsightCard from '../components/invoice/AiInsightCard';
+import PaymentMethodsCard from '../components/invoice/PaymentMethodsCard';
+import BillingHistoryTable from '../components/invoice/BillingHistoryTable';
 import '../assets/css/Invoices.css';
 
 const Invoices = () => {

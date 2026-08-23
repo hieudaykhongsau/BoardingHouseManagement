@@ -1,7 +1,7 @@
-import Sidebar from '../components/Sidebar';
-import MaintenanceContact from '../components/MaintenanceContact';
-import MaintenanceRules from '../components/MaintenanceRules';
-import MaintenanceForm from '../components/MaintenanceForm';
+import Sidebar from '../components/common/Sidebar';
+import MaintenanceContact from '../components/maintenance/MaintenanceContact';
+import MaintenanceRules from '../components/maintenance/MaintenanceRules';
+import MaintenanceForm from '../components/maintenance/MaintenanceForm';
 import '../assets/css/Dashboard.css';
 import '../assets/css/Maintenance.css';
 

@@ -1,6 +1,6 @@
 import { Bell } from "lucide-react";
-import '../assets/css/Header.css';
-import { tenantData } from '../data/mockData';
+import '../../assets/css/Header.css';
+import { tenantData } from '../../data/mockData';
 
 const Header = () => {
     const currentDate = new Date().toLocaleDateString('vi-VN', {

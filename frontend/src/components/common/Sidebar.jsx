@@ -1,8 +1,8 @@
 import { HomeIcon, LayoutDashboard, ReceiptText, Wrench, ChartColumn, UserPen } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
-import '../assets/css/Sidebar.css';
-import { tenantData } from '../data/mockData';
-import getNavClass from '../assets/js/activeRoute';
+import '../../assets/css/Sidebar.css';
+import { tenantData } from '../../data/mockData';
+import getNavClass from '../../assets/js/activeRoute';
 
 const Sidebar = () => {
 

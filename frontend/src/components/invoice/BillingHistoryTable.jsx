@@ -1,4 +1,4 @@
-import { invoiceHistory } from '../data/mockData';
+import { invoiceHistory } from '../../data/mockData';
 
 const formatCurrency = (amount) =>
   new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);

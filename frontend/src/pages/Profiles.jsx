@@ -1,4 +1,4 @@
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/common/Sidebar';
 import { tenantData } from '../data/mockData';
 import { Phone, Mail, IdCard, Edit2, FileText, Wallet, Download, BellRing, MessageSquare } from 'lucide-react';
 import '../assets/css/Dashboard.css';
@@ -74,8 +74,8 @@ const Profiles = () => {
                                         </div>
                                         <div className="contract-box full-width">
                                             <div>
-                                                <div className="contract-label">Tiền cọc</div>
-                                                <div className="contract-val highlight">30,000,000 đ</div>
+                                                <div className="contract-label">Tiền nhà</div>
+                                                <div className="contract-val highlight">8,000,000 đ</div>
                                             </div>
                                             <Wallet size={24} className="download-icon" />
                                         </div>

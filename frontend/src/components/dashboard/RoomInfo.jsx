@@ -1,4 +1,4 @@
-import '../assets/css/RoomInfo.css';
+import '../../assets/css/RoomInfo.css';
 
 function RoomInfo() {
     return (

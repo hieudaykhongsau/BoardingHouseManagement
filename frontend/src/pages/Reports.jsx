@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Sidebar from '../components/Sidebar';
-import ReportSummaryCards from '../components/ReportSummaryCards';
-import SpendingBarChart from '../components/SpendingBarChart';
-import SpendingDonutChart from '../components/SpendingDonutChart';
-import AIHabitsCard from '../components/AIHabitsCard';
-import RecommendationsCard from '../components/RecommendationsCard';
+import Sidebar from '../components/common/Sidebar';
+import ReportSummaryCards from '../components/report/ReportSummaryCards';
+import SpendingBarChart from '../components/report/SpendingBarChart';
+import SpendingDonutChart from '../components/report/SpendingDonutChart';
+import AIHabitsCard from '../components/report/AIHabitsCard';
+import RecommendationsCard from '../components/report/RecommendationsCard';
 import '../assets/css/Reports.css';
 
 const BarChartIcon = () => (

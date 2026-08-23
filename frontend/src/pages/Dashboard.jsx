@@ -1,8 +1,8 @@
-import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
-import FinancialCards from '../components/FinancialCards';
-import ConsumptionChart from '../components/ConsumptionChart';
-import RoomInfo from '../components/RoomInfo';
+import Sidebar from '../components/common/Sidebar';
+import Header from '../components/dashboard/Header';
+import FinancialCards from '../components/dashboard/FinancialCards';
+import ConsumptionChart from '../components/dashboard/ConsumptionChart';
+import RoomInfo from '../components/dashboard/RoomInfo';
 import '../assets/css/Dashboard.css';
 
 const Dashboard = () => {

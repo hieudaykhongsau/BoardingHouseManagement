@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ReceiptText } from 'lucide-react';
-import { currentInvoice } from '../data/mockData';
+import { currentInvoice } from '../../data/mockData';
 
 const formatCurrency = (amount) =>
     new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
