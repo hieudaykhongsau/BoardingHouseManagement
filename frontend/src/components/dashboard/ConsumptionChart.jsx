@@ -1,11 +1,15 @@
 import '../../assets/css/ConsumptionChart.css';
+import { useTranslation } from 'react-i18next';
 
 const ConsumptionChart = () => {
+    const { t, i18n } = useTranslation();
+    const isVi = i18n.language?.startsWith('vi');
+
     return (
         <div className="chart-card glass-panel">
             <div className="chart-header">
-                <h3>Xu hướng tiêu thụ (6 tháng)</h3>
-                <button className="btn-detail">Chi tiết</button>
+                <h3>{t('dashboard.consumption_trend')}</h3>
+                <button className="btn-detail">{t('dashboard.detail')}</button>
             </div>
 
             <div className="chart-area">
@@ -26,23 +30,23 @@ const ConsumptionChart = () => {
                 </div>
 
                 <div className="chart-x-axis">
-                    <span>T1</span>
-                    <span>T2</span>
-                    <span>T3</span>
-                    <span>T4</span>
-                    <span>T5</span>
-                    <span>T6</span>
+                    <span>{isVi ? 'T1' : 'Jan'}</span>
+                    <span>{isVi ? 'T2' : 'Feb'}</span>
+                    <span>{isVi ? 'T3' : 'Mar'}</span>
+                    <span>{isVi ? 'T4' : 'Apr'}</span>
+                    <span>{isVi ? 'T5' : 'May'}</span>
+                    <span>{isVi ? 'T6' : 'Jun'}</span>
                 </div>
             </div>
 
             <div className="chart-legend">
                 <div className="legend-item">
                     <div className="legend-color legend-electric"></div>
-                    <span>Điện (kWh)</span>
+                    <span>{t('dashboard.electric_label')}</span>
                 </div>
                 <div className="legend-item">
                     <div className="legend-color legend-water"></div>
-                    <span>Nước (m³)</span>
+                    <span>{t('dashboard.water_label')}</span>
                 </div>
             </div>
         </div>

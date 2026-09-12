@@ -14,7 +14,8 @@ const AuthService = {
                 token: firebaseToken
             });
 
-            const { accessToken, userData } = response.data;
+            const payload = response.data?.data || response.data;
+            const { accessToken, userData } = payload;
 
             // 3. Lưu JWT của BE vào localStorage
             if (accessToken) {
@@ -24,7 +25,7 @@ const AuthService = {
                 }
             }
 
-            return response.data;
+            return payload;
         } catch (error) {
             console.error("Lỗi đăng nhập Google:", error);
             throw error;

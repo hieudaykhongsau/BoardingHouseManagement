@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
+    const { t } = useTranslation();
+
     const styles = {
         container: {
             display: 'flex',
@@ -8,36 +11,40 @@ const NotFound = () => {
             alignItems: 'center',
             justifyContent: 'center',
             minHeight: '100vh',
-            backgroundColor: '#f3f4f6',
-            fontFamily: 'sans-serif'
+            backgroundColor: 'var(--bg-base, #0b0f19)',
+            color: 'var(--text-primary, #f8fafc)',
+            fontFamily: 'sans-serif',
+            padding: '24px',
+            textAlign: 'center'
         },
         title: {
-            fontSize: '4rem',
+            fontSize: '5rem',
             fontWeight: 'bold',
-            color: '#1f2937',
+            color: 'var(--emerald-text, #10b981)',
             margin: '0 0 1rem 0'
         },
         text: {
             fontSize: '1.25rem',
-            color: '#4b5563',
+            color: 'var(--text-secondary, #94a3b8)',
             marginBottom: '2rem'
         },
         button: {
             padding: '0.75rem 1.5rem',
-            backgroundColor: '#2563eb',
+            backgroundColor: 'var(--accent, #3b82f6)',
             color: 'white',
             textDecoration: 'none',
-            borderRadius: '0.5rem',
-            fontWeight: '500'
+            borderRadius: '9999px',
+            fontWeight: '600',
+            transition: 'all 0.2s ease'
         }
     };
 
     return (
         <div style={styles.container}>
             <h1 style={styles.title}>404</h1>
-            <p style={styles.text}>Trang bạn tìm kiếm không tồn tại.</p>
+            <p style={styles.text}>{t('notFound.title')}</p>
             <Link to="/" style={styles.button}>
-                Về Trang chủ
+                {t('notFound.back_home')}
             </Link>
         </div>
     );

@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../components/common/Sidebar';
 import InvoiceMainCard from '../components/invoice/InvoiceMainCard';
 import AiInsightCard from '../components/invoice/AiInsightCard';
@@ -7,6 +8,7 @@ import BillingHistoryTable from '../components/invoice/BillingHistoryTable';
 import '../assets/css/Invoices.css';
 
 const Invoices = () => {
+    const { t } = useTranslation();
     const [paymentId, setPaymentId] = useState('bank');
     const handlePaymentMethod = (id)=>{
         setPaymentId(id);
@@ -19,8 +21,8 @@ const Invoices = () => {
                 <div className="invoices-inner">
                     <div className="invoices-content">
                         <div className="invoices-page-header" style={{ marginTop: '32px' }}>
-                            <h2>Hóa đơn</h2>
-                            <p>Quản lý các khoản thanh toán hàng tháng của bạn</p>
+                            <h2>{t('invoices.title')}</h2>
+                            <p>{t('invoices.subtitle')}</p>
                         </div>
 
                         {/* Bento: Current Invoice + Side Panel */}

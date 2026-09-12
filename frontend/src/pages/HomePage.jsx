@@ -1,8 +1,40 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/HomePage.css';
 import GoogleIcon from "../assets/google-icon.svg";
-import { CircleCheckBig, ReceiptText, ChartNoAxesCombined, Headset, Sparkles } from 'lucide-react'
+import { CircleCheckBig, ReceiptText, ChartNoAxesCombined, Headset, Sparkles, LayoutDashboard, LogOut } from 'lucide-react';
+import { useAuth } from '../auth/context/AuthContext';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import showToast from '../utils/toast';
+import { handleAuthError } from '../auth/utils/authErrorHandler';
+import LanguageToggle from '../components/common/LanguageToggle';
+
 const HomePage = () => {
+    const { user, loginWithGoogle, logout } = useAuth();
+    const navigate = useNavigate();
+    const { t } = useTranslation();
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+    const handleGoogleLogin = async () => {
+        if (isLoggingIn) return;
+        setIsLoggingIn(true);
+        try {
+            await loginWithGoogle();
+            showToast.success(t('auth.login_success'));
+            navigate('/dashboard');
+        } catch (error) {
+            console.error("Đăng nhập thất bại:", error);
+            handleAuthError(error);
+        } finally {
+            setIsLoggingIn(false);
+        }
+    };
+
+    const handleLogout = async () => {
+        await logout();
+        showToast.success(t('auth.logout_success'));
+    };
+
     return (
         <div className="home-container">
             {/* Navigation */}
@@ -16,18 +48,44 @@ const HomePage = () => {
                         </div>
                     </Link>
                     <div className="nav-links">
-                        <a href="#features" className="nav-link">Tính năng</a>
-                        <a href="#pricing" className="nav-link">Bảng giá</a>
-                        <a href="#about" className="nav-link">Về chúng tôi</a>
+                        <a href="#features" className="nav-link">{t('nav.features')}</a>
+                        <a href="#pricing" className="nav-link">{t('nav.pricing')}</a>
+                        <a href="#about" className="nav-link">{t('nav.about')}</a>
                     </div>
-                    <button
-                        onClick={()=>console.log("DMM")}
-                        className="glass-button primary"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px' }}
-                    >
-                        <img src={GoogleIcon} alt="Google Icon" style={{ width: '20px', height: '20px' }} />
-                        <span>Đăng nhập</span>
-                    </button>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <LanguageToggle />
+
+                        {user ? (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <button
+                                    onClick={() => navigate('/dashboard')}
+                                    className="glass-button primary"
+                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px' }}
+                                >
+                                    <LayoutDashboard size={18} />
+                                    <span>{t('common.dashboard')}</span>
+                                </button>
+                                <button
+                                    onClick={handleLogout}
+                                    className="glass-button"
+                                    title={t('common.logout')}
+                                    style={{ display: 'inline-flex', alignItems: 'center', padding: '8px 12px' }}
+                                >
+                                    <LogOut size={18} />
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                onClick={handleGoogleLogin}
+                                disabled={isLoggingIn}
+                                className="glass-button primary"
+                                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', opacity: isLoggingIn ? 0.7 : 1, cursor: isLoggingIn ? 'wait' : 'pointer' }}
+                            >
+                                <img src={GoogleIcon} alt="Google Icon" style={{ width: '20px', height: '20px' }} />
+                                <span>{isLoggingIn ? t('auth.logging_in') : t('auth.login_google')}</span>
+                            </button>
+                        )}
+                    </div>
                 </div>
             </nav>
 
@@ -36,14 +94,21 @@ const HomePage = () => {
                 <section className="hero-section">
                     <div className="hero-content">
                         <h1 className="text-display">
-                            Quản lý thuê nhà thông minh, minh bạch và hiệu quả
+                            {t('home.hero_title')}
                         </h1>
                         <p className="text-body">
-                            Nền tảng tối ưu hóa quy trình quản lý bất động sản tại Việt Nam, mang đến trải nghiệm thuận tiện nhất cho cả chủ nhà và khách thuê thông qua tự động hóa và dữ liệu trực quan.
+                            {t('home.hero_subtitle')}
                         </p>
                         <div className="hero-actions">
-                            <button className="glass-button primary">Bắt đầu ngay</button>
-                            <button className="glass-button">Tìm hiểu thêm</button>
+                            <button
+                                onClick={user ? () => navigate('/dashboard') : handleGoogleLogin}
+                                className="glass-button primary"
+                            >
+                                {user ? t('home.go_to_dashboard') : t('home.get_started')}
+                            </button>
+                            <a href="#features" className="glass-button" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                                {t('home.learn_more')}
+                            </a>
                         </div>
                     </div>
 
@@ -58,8 +123,8 @@ const HomePage = () => {
                                 <CircleCheckBig className="material-symbols-outlined" />
                             </div>
                             <div className="floating-status-text">
-                                <h4>Tiền thuê tháng này</h4>
-                                <p>Đã thanh toán</p>
+                                <h4>{t('home.floating_rent')}</h4>
+                                <p>{t('home.floating_paid')}</p>
                             </div>
                         </div>
                     </div>
@@ -69,8 +134,8 @@ const HomePage = () => {
                 <section id="features" className="features-section">
                     <div className="features-inner">
                         <div className="features-header">
-                            <h2 className="text-headline">Tính năng nổi bật</h2>
-                            <p className="text-body">Trải nghiệm nền tảng quản lý hiện đại nhất.</p>
+                            <h2 className="text-headline">{t('home.features_title')}</h2>
+                            <p className="text-body">{t('home.features_subtitle')}</p>
                         </div>
 
                         <div className="features-grid">
@@ -79,8 +144,8 @@ const HomePage = () => {
                                 <div className="feature-icon primary">
                                     <ReceiptText className="material-symbols-outlined" />
                                 </div>
-                                <h3>Quản lý hóa đơn thông minh</h3>
-                                <p>Tự động tạo, gửi và theo dõi trạng thái thanh toán. Cảnh báo quá hạn và tích hợp thanh toán trực tuyến nhanh chóng.</p>
+                                <h3>{t('home.feature1_title')}</h3>
+                                <p>{t('home.feature1_desc')}</p>
                             </div>
 
                             {/* Feature 2 */}
@@ -88,8 +153,8 @@ const HomePage = () => {
                                 <div className="feature-icon secondary">
                                     <ChartNoAxesCombined className="material-symbols-outlined" />
                                 </div>
-                                <h3>Phân tích AI chuyên sâu</h3>
-                                <p>Dự đoán dòng tiền, phân tích xu hướng thuê và đề xuất giá thuê tối ưu dựa trên dữ liệu thị trường thực tế.</p>
+                                <h3>{t('home.feature2_title')}</h3>
+                                <p>{t('home.feature2_desc')}</p>
                             </div>
 
                             {/* Feature 3 */}
@@ -97,8 +162,8 @@ const HomePage = () => {
                                 <div className="feature-icon tertiary">
                                     <Headset className="material-symbols-outlined" />
                                 </div>
-                                <h3>Hỗ trợ 24/7</h3>
-                                <p>Kênh giao tiếp trực tiếp giữa chủ nhà và khách thuê. Xử lý yêu cầu bảo trì và khiếu nại nhanh chóng, minh bạch.</p>
+                                <h3>{t('home.feature3_title')}</h3>
+                                <p>{t('home.feature3_desc')}</p>
                             </div>
                         </div>
                     </div>
@@ -106,14 +171,13 @@ const HomePage = () => {
 
                 {/* Testimonial Section */}
                 <section className="testimonial-section">
-
                     <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', color: '#f59e0b' }}>
                         {Array.from({ length: 5 }).map((_, index) => (
                             <Sparkles key={index} size={25} />
                         ))}
                     </div>
                     <blockquote>
-                        &quot;V-Rentals đã thay đổi hoàn toàn cách tôi quản lý căn hộ cho thuê. Mọi thứ từ hóa đơn đến giao tiếp với khách thuê đều trở nên đơn giản và chuyên nghiệp hơn rất nhiều.&quot;
+                        &quot;{t('home.testimonial_quote')}&quot;
                     </blockquote>
 
                     <div className="testimonial-author">
@@ -124,8 +188,8 @@ const HomePage = () => {
                             />
                         </div>
                         <div className="author-info">
-                            <h4>Nguyễn Văn A</h4>
-                            <p>Chủ chuỗi căn hộ dịch vụ</p>
+                            <h4>{t('home.testimonial_author')}</h4>
+                            <p>{t('home.testimonial_role')}</p>
                         </div>
                     </div>
                 </section>
@@ -135,13 +199,13 @@ const HomePage = () => {
                 <div className="footer-inner">
                     <div className="footer-brand">
                         <span className="text-title">V-Rentals</span>
-                        <p className="text-sm">© 2026 V-Rentals. All rights reserved. Managed with trust in Vietnam.</p>
+                        <p className="text-sm">{t('home.footer_rights')}</p>
                     </div>
 
                     <div className="footer-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Contact Support</a>
+                        <a href="#">{t('home.footer_privacy')}</a>
+                        <a href="#">{t('home.footer_terms')}</a>
+                        <a href="#">{t('home.footer_contact')}</a>
                     </div>
                 </div>
             </footer>

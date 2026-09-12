@@ -1,60 +1,63 @@
 import { Headset, ImagePlus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const MaintenanceForm = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="glass-panel support-form-card" style={{ position: 'sticky', top: '100px' }}>
             <div className="section-header-row">
                 <div className="icon-box accent">
                     <Headset size={24} />
                 </div>
-                <h3 className="text-title">Gửi Yêu Cầu Hỗ Trợ</h3>
+                <h3 className="text-title">{t('maintenance.form_title')}</h3>
             </div>
 
             <form className="support-form" onSubmit={(e) => e.preventDefault()}>
                 <div className="form-group">
-                    <label className="form-label" htmlFor="issue-type">Loại Yêu Cầu</label>
+                    <label className="form-label" htmlFor="issue-type">{t('maintenance.req_type')}</label>
                     <select id="issue-type" className="form-select">
-                        <option>Sửa chữa điện/nước</option>
-                        <option>Báo cáo sự cố an ninh</option>
-                        <option>Thắc mắc hóa đơn</option>
-                        <option>Góp ý dịch vụ</option>
-                        <option>Khác</option>
+                        <option>{t('maintenance.req_type_plumbing')}</option>
+                        <option>{t('maintenance.req_type_security')}</option>
+                        <option>{t('maintenance.req_type_billing')}</option>
+                        <option>{t('maintenance.req_type_feedback')}</option>
+                        <option>{t('maintenance.req_type_other')}</option>
                     </select>
                 </div>
 
                 <div className="form-group">
-                    <label className="form-label">Mức Độ Ưu Tiên</label>
+                    <label className="form-label">{t('maintenance.priority')}</label>
                     <div className="radio-group">
                         <label className="radio-label">
                             <input type="radio" name="urgency" value="normal" className="radio-input" defaultChecked />
-                            Bình thường
+                            {t('maintenance.priority_normal')}
                         </label>
                         <label className="radio-label urgent-radio">
                             <input type="radio" name="urgency" value="high" className="radio-input urgent-radio-input" />
-                            Gấp
+                            {t('maintenance.priority_urgent')}
                         </label>
                     </div>
                 </div>
 
                 <div className="form-group">
-                    <label className="form-label" htmlFor="message">Nội Dung Chi Tiết</label>
-                    <textarea id="message" className="form-textarea" rows={4} placeholder="Mô tả chi tiết vấn đề bạn đang gặp phải..."></textarea>
+                    <label className="form-label" htmlFor="message">{t('maintenance.details_label')}</label>
+                    <textarea id="message" className="form-textarea" rows={4} placeholder={t('maintenance.details_placeholder')}></textarea>
                 </div>
 
                 <div className="form-group">
-                    <label className="form-label">Đính Kèm Ảnh (Tùy chọn)</label>
+                    <label className="form-label">{t('maintenance.attach_photo')}</label>
                     <label className="file-upload-box">
                         <ImagePlus className="file-upload-icon" size={32} />
                         <div className="file-upload-text">
-                            <span>Tải ảnh lên</span> hoặc kéo thả vào đây
+                            <span>{t('maintenance.upload_hint_span')}</span> {t('maintenance.upload_hint_drag')}
                         </div>
-                        <div className="file-upload-meta">PNG, JPG tối đa 5MB</div>
+                        <div className="file-upload-meta">{t('maintenance.upload_limit')}</div>
                         <input type="file" style={{ display: 'none' }} />
                     </label>
                 </div>
 
                 <button type="submit" className="glass-button primary submit-btn">
-                    Gửi Yêu Cầu
+                    {t('maintenance.submit_btn')}
                 </button>
             </form>
         </div>

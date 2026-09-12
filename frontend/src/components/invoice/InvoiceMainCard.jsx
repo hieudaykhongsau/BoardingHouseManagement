@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { ReceiptText } from 'lucide-react';
 import { currentInvoice } from '../../data/mockData';
+import { useTranslation } from 'react-i18next';
 
 const formatCurrency = (amount) =>
     new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
 
 const InvoiceMainCard = ({paymentId}) => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const isPending = currentInvoice.status === 'Pending';
 
     const navigatePaymentPage = () =>{
@@ -21,12 +23,12 @@ const InvoiceMainCard = ({paymentId}) => {
         <div className="invoice-main-card glass-card">
             <div className="invoice-card-header">
                 <div>
-                    <h3>Hóa đơn {currentInvoice.period}</h3>
-                    <p>Hạn thanh toán: {currentInvoice.dueDate}</p>
+                    <h3>{t('invoices.invoice_period')} {currentInvoice.period}</h3>
+                    <p>{t('invoices.due_date')}: {currentInvoice.dueDate}</p>
                 </div>
                 <span className={`status-badge-invoice ${isPending ? 'unpaid' : 'paid'}`}>
                     <ReceiptText size={14} />
-                    {isPending ? 'Chưa thanh toán' : 'Đã thanh toán'}
+                    {isPending ? t('invoices.unpaid') : t('invoices.paid')}
                 </span>
             </div>
 
@@ -41,14 +43,14 @@ const InvoiceMainCard = ({paymentId}) => {
 
             <div className="invoice-footer">
                 <div className="invoice-total-block">
-                    <span className="invoice-total-label">Tổng cộng cần thanh toán</span>
+                    <span className="invoice-total-label">{t('invoices.total_due')}</span>
                     <span className="invoice-total-amount">{formatCurrency(currentInvoice.total)}</span>
                 </div>
                 <button
                     className="btn-pay-now"
                     onClick={navigatePaymentPage}
                 >
-                    Thanh toán ngay
+                    {t('invoices.pay_now')}
                 </button>
             </div>
         </div>
@@ -56,4 +58,3 @@ const InvoiceMainCard = ({paymentId}) => {
 };
 
 export default InvoiceMainCard;
-

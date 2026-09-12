@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../components/common/Sidebar';
 import Header from '../components/dashboard/Header';
 import FinancialCards from '../components/dashboard/FinancialCards';
@@ -6,6 +7,8 @@ import RoomInfo from '../components/dashboard/RoomInfo';
 import '../assets/css/Dashboard.css';
 
 const Dashboard = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="dashboard-container">
             <Sidebar />
@@ -16,13 +19,13 @@ const Dashboard = () => {
                     <div className="dashboard-content">
                         <div className="page-title-section">
                             <div className="title-left">
-                                <h2>Tổng quan Căn hộ</h2>
-                                <p>Theo dõi mức tiêu thụ và thông tin chi tiết.</p>
+                                <h2>{t('dashboard.overview_title')}</h2>
+                                <p>{t('dashboard.overview_subtitle')}</p>
                             </div>
 
                             <div className="title-right">
                                 <span className="status-badge-active">
-                                    Đang thuê
+                                    {t('dashboard.status_renting')}
                                 </span>
                             </div>
                         </div>

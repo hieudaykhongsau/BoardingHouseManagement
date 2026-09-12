@@ -1,31 +1,35 @@
 import '../../assets/css/Reports.css';
-import {Sparkles} from 'lucide-react'
+import { Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
 const AIHabitsCard = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="report-ai-habits-card">
             <div className="report-ai-habits-bg-orb" />
 
             <div className="report-ai-habits-header">
                 <Sparkles />
-                <h3>Đánh giá thói quen</h3>
+                <h3>{t('reports.habits_evaluation')}</h3>
             </div>
 
             <div className="report-ai-score-block">
                 <span className="report-ai-score">B+</span>
-                <span className="report-ai-score-label">Điểm đánh giá</span>
+                <span className="report-ai-score-label">{t('reports.score_label')}</span>
             </div>
 
             <p className="report-ai-habits-text">
-                Tiền điện cao hơn{' '}
+                {t('reports.habits_desc_prefix')}{' '}
                 <strong className="highlight-bad">20%</strong>{' '}
-                so với mức trung bình của khu vực, nhưng tiền nước tiết kiệm được{' '}
+                {t('reports.habits_desc_mid')}{' '}
                 <strong className="highlight-good">5%</strong>{' '}
-                so với cùng kỳ năm ngoái. Hãy chú ý điều chỉnh thói quen sử dụng điện.
+                {t('reports.habits_desc_suffix')}
             </p>
 
             <div className="report-ai-updated-badge">
                 <div className="report-ai-updated-dot" />
-                <span className="report-ai-updated-text">Cập nhật hôm nay</span>
+                <span className="report-ai-updated-text">{t('reports.updated_today')}</span>
             </div>
         </div>
     );

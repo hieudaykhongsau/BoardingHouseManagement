@@ -1,4 +1,5 @@
 import { invoiceHistory } from '../../data/mockData';
+import { useTranslation } from 'react-i18next';
 
 const formatCurrency = (amount) =>
   new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
@@ -18,52 +19,56 @@ const FilterIcon = () => (
   </svg>
 );
 
-const BillingHistoryTable = () => (
-  <div className="billing-history-section glass-card">
-    <div className="billing-history-header">
-      <h3>Lịch sử hóa đơn</h3>
-      <button className="btn-filter">
-        <FilterIcon />
-        Lọc
-      </button>
-    </div>
+const BillingHistoryTable = () => {
+  const { t } = useTranslation();
 
-    <div className="billing-table-wrapper">
-      <table className="billing-table">
-        <thead>
-          <tr>
-            <th>Kỳ hóa đơn</th>
-            <th>Tổng tiền</th>
-            <th>Ngày thanh toán</th>
-            <th>Trạng thái</th>
-            <th className="text-right">Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          {invoiceHistory.map((row, idx) => (
-            <tr key={idx}>
-              <td className="period">{row.period}</td>
-              <td className="amount">{formatCurrency(row.total)}</td>
-              <td className="date">{row.paidDate}</td>
-              <td>
-                <span className="status-chip status-paid">Đã thanh toán</span>
-              </td>
-              <td className="actions">
-                <button className="btn-pdf">
-                  <PdfIcon />
-                  PDF
-                </button>
-              </td>
+  return (
+    <div className="billing-history-section glass-card">
+      <div className="billing-history-header">
+        <h3>{t('invoices.billing_history')}</h3>
+        <button className="btn-filter">
+          <FilterIcon />
+          {t('common.filter')}
+        </button>
+      </div>
+
+      <div className="billing-table-wrapper">
+        <table className="billing-table">
+          <thead>
+            <tr>
+              <th>{t('invoices.table_period')}</th>
+              <th>{t('invoices.table_total')}</th>
+              <th>{t('invoices.table_date')}</th>
+              <th>{t('invoices.table_status')}</th>
+              <th className="text-right">{t('invoices.table_actions')}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {invoiceHistory.map((row, idx) => (
+              <tr key={idx}>
+                <td className="period">{row.period}</td>
+                <td className="amount">{formatCurrency(row.total)}</td>
+                <td className="date">{row.paidDate}</td>
+                <td>
+                  <span className="status-chip status-paid">{t('invoices.paid')}</span>
+                </td>
+                <td className="actions">
+                  <button className="btn-pdf">
+                    <PdfIcon />
+                    PDF
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-    <div className="billing-history-footer">
-      <button className="btn-view-all">Xem tất cả lịch sử</button>
+      <div className="billing-history-footer">
+        <button className="btn-view-all">{t('invoices.view_all_history')}</button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default BillingHistoryTable;

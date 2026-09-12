@@ -21,12 +21,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response && error.response.status === 401) {
-            
+        const isAuthRequest = error.config?.url?.includes('/auth/');
+        if (error.response && error.response.status === 401 && !isAuthRequest) {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('userData');
-
-            window.location.href = '/login';
+            window.location.href = '/';
         }
         return Promise.reject(error);
     }

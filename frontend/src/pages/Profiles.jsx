@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../components/common/Sidebar';
 import { tenantData } from '../data/mockData';
 import { Phone, Mail, IdCard, Edit2, FileText, Wallet, Download, BellRing, MessageSquare } from 'lucide-react';
@@ -5,6 +6,8 @@ import '../assets/css/Dashboard.css';
 import '../assets/css/Profiles.css';
 
 const Profiles = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="dashboard-container">
             <Sidebar />
@@ -14,8 +17,8 @@ const Profiles = () => {
                     <div className="dashboard-content">
                         <div className="page-title-section">
                             <div className="title-left">
-                                <h2>Hồ sơ cá nhân</h2>
-                                <p>Quản lý thông tin cá nhân và cài đặt tài khoản của bạn.</p>
+                                <h2>{t('profiles.title')}</h2>
+                                <p>{t('profiles.subtitle')}</p>
                             </div>
                         </div>
 
@@ -27,12 +30,12 @@ const Profiles = () => {
                                         <div className="profile-avatar">
                                             {tenantData.name.charAt(0)}
                                         </div>
-                                        <button className="edit-avatar-btn">
+                                        <button className="edit-avatar-btn" aria-label="Edit avatar">
                                             <Edit2 size={16} />
                                         </button>
                                     </div>
                                     <h3 className="profile-name">{tenantData.name}</h3>
-                                    <p className="profile-role">Người thuê chính</p>
+                                    <p className="profile-role">{t('profiles.primary_tenant')}</p>
 
                                     <div className="profile-info-list">
                                         <div className="info-item">
@@ -58,23 +61,23 @@ const Profiles = () => {
                                     <div className="section-header">
                                         <h3>
                                             <FileText size={20} />
-                                            Thông tin hợp đồng
+                                            {t('profiles.contract_info')}
                                         </h3>
-                                        <span className="status-chip status-paid">Đang hiệu lực</span>
+                                        <span className="status-chip status-paid">{t('profiles.contract_active')}</span>
                                     </div>
 
                                     <div className="contract-grid">
                                         <div className="contract-box">
-                                            <div className="contract-label">Ngày bắt đầu</div>
+                                            <div className="contract-label">{t('profiles.contract_start')}</div>
                                             <div className="contract-val">01/01/2026</div>
                                         </div>
                                         <div className="contract-box">
-                                            <div className="contract-label">Ngày kết thúc</div>
+                                            <div className="contract-label">{t('profiles.contract_end')}</div>
                                             <div className="contract-val">31/12/2026</div>
                                         </div>
                                         <div className="contract-box full-width">
                                             <div>
-                                                <div className="contract-label">Tiền nhà</div>
+                                                <div className="contract-label">{t('profiles.monthly_rent')}</div>
                                                 <div className="contract-val highlight">8,000,000 đ</div>
                                             </div>
                                             <Wallet size={24} className="download-icon" />
@@ -88,7 +91,7 @@ const Profiles = () => {
                                             </div>
                                             <div>
                                                 <div className="file-name">Hop_dong_thue_nha_2026.pdf</div>
-                                                <div className="file-meta">2.4 MB • Đã ký điện tử</div>
+                                                <div className="file-meta">2.4 MB • {t('profiles.signed_electronically')}</div>
                                             </div>
                                         </div>
                                         <Download size={20} className="download-icon" />
@@ -100,7 +103,7 @@ const Profiles = () => {
                                     <div className="section-header">
                                         <h3>
                                             <BellRing size={20} />
-                                            Cài đặt thông báo
+                                            {t('profiles.notification_settings')}
                                         </h3>
                                     </div>
 
@@ -109,8 +112,8 @@ const Profiles = () => {
                                             <div className="setting-info">
                                                 <Mail size={24} />
                                                 <div>
-                                                    <div className="setting-title">Nhận qua Email</div>
-                                                    <div className="setting-desc">Hóa đơn, thông báo quan trọng</div>
+                                                    <div className="setting-title">{t('profiles.receive_via_email')}</div>
+                                                    <div className="setting-desc">{t('profiles.email_notif_desc')}</div>
                                                 </div>
                                             </div>
                                             <input type="checkbox" defaultChecked />
@@ -120,8 +123,8 @@ const Profiles = () => {
                                             <div className="setting-info">
                                                 <MessageSquare size={24} />
                                                 <div>
-                                                    <div className="setting-title">Nhận qua Zalo</div>
-                                                    <div className="setting-desc">Nhắc nhở thanh toán, tin nhắn nhanh</div>
+                                                    <div className="setting-title">{t('profiles.receive_via_zalo')}</div>
+                                                    <div className="setting-desc">{t('profiles.zalo_notif_desc')}</div>
                                                 </div>
                                             </div>
                                             <input type="checkbox" />
@@ -129,7 +132,7 @@ const Profiles = () => {
                                     </div>
 
                                     <div className="save-btn-wrapper">
-                                        <button className="glass-button primary">Lưu thay đổi</button>
+                                        <button className="glass-button primary">{t('profiles.save_changes')}</button>
                                     </div>
                                 </div>
                             </div>

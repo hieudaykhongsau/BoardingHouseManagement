@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../components/common/Sidebar';
 import ReportSummaryCards from '../components/report/ReportSummaryCards';
 import SpendingBarChart from '../components/report/SpendingBarChart';
@@ -13,17 +14,19 @@ const BarChartIcon = () => (
     </svg>
 );
 
-const periodOptions = [
-    { value: 'month-5', label: 'Tháng 5, 2026' },
-    { value: 'month-4', label: 'Tháng 4, 2026' },
-    { value: 'month-3', label: 'Tháng 3, 2026' },
-    { value: 'last-3', label: '3 tháng gần nhất' },
-    { value: 'last-6', label: '6 tháng gần nhất' },
-    { value: 'last-12', label: '12 tháng gần nhất' },
-];
-
 const Reports = () => {
+    const { t, i18n } = useTranslation();
+    const isVi = i18n.language?.startsWith('vi');
     const [selectedPeriod, setSelectedPeriod] = useState('month-5');
+
+    const periodOptions = [
+        { value: 'month-5', label: isVi ? 'Tháng 5, 2026' : 'May 2026' },
+        { value: 'month-4', label: isVi ? 'Tháng 4, 2026' : 'Apr 2026' },
+        { value: 'month-3', label: isVi ? 'Tháng 3, 2026' : 'Mar 2026' },
+        { value: 'last-3', label: t('reports.last_3_months') },
+        { value: 'last-6', label: t('reports.last_6_months') },
+        { value: 'last-12', label: t('reports.last_12_months') },
+    ];
 
     return (
         <div className="reports-container">
@@ -36,15 +39,15 @@ const Reports = () => {
                             <div className="reports-page-header-left">
                                 <h2>
                                     <BarChartIcon />
-                                    Báo cáo &amp; Chi tiêu
+                                    {t('reports.title')}
                                 </h2>
-                                <p>Phân tích dựa trên dữ liệu 6 tháng gần nhất của bạn.</p>
+                                <p>{t('reports.subtitle')}</p>
                             </div>
                             <select
                                 className="reports-filter-select"
                                 value={selectedPeriod}
                                 onChange={(e) => setSelectedPeriod(e.target.value)}
-                                aria-label="Chọn khoảng thời gian"
+                                aria-label={t('reports.select_period')}
                             >
                                 {periodOptions.map((opt) => (
                                     <option key={opt.value} value={opt.value}>{opt.label}</option>

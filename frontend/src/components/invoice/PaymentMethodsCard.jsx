@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { CreditCard, Banknote } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const PaymentMethodsCard = ({ onSelectMethod }) => {
+    const { t } = useTranslation();
     const [selectedMethod, setSelectedMethod] = useState('bank');
 
     const paymentOptions = [
-        { id: 'bank', name: 'Chuyển khoản Ngân hàng', icon: <CreditCard /> },
-        { id: 'cash', name: 'Thanh toán tiền mặt', icon: <Banknote /> },
+        { id: 'bank', name: t('invoices.bank_transfer'), icon: <CreditCard /> },
+        { id: 'cash', name: t('invoices.cash'), icon: <Banknote /> },
     ];
 
     const handleSelect = (id) => {
@@ -18,7 +20,7 @@ const PaymentMethodsCard = ({ onSelectMethod }) => {
 
     return (
         <div className="payment-methods-card glass-card">
-            <h4>Phương thức thanh toán</h4>
+            <h4>{t('invoices.payment_methods')}</h4>
 
             {paymentOptions.map((option) => (
                 <div

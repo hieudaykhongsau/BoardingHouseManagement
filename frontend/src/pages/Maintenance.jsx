@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../components/common/Sidebar';
 import MaintenanceContact from '../components/maintenance/MaintenanceContact';
 import MaintenanceRules from '../components/maintenance/MaintenanceRules';
@@ -6,6 +7,8 @@ import '../assets/css/Dashboard.css';
 import '../assets/css/Maintenance.css';
 
 const Maintenance = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="dashboard-container">
             <Sidebar />
@@ -14,8 +17,8 @@ const Maintenance = () => {
                     <div className="dashboard-content">
                         <div className="page-title-section">
                             <div className="title-left">
-                                <h2>Thông tin liên hệ & Hỗ trợ</h2>
-                                <p>Kết nối với ban quản lý, xem lại nội quy hoặc gửi yêu cầu hỗ trợ trực tuyến.</p>
+                                <h2>{t('maintenance.title')}</h2>
+                                <p>{t('maintenance.subtitle')}</p>
                             </div>
                         </div>
 

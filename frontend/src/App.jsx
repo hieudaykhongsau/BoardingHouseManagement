@@ -1,5 +1,6 @@
-import {  lazy } from 'react';
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 import HomePage from './pages/HomePage';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -10,15 +11,21 @@ const DashboardRoutes = lazy(() => import('./routes/DashboardRoutes'));
 function App() {
     return (
         <AuthProvider>
+            <Toaster
+                position="top-right"
+                expand={false}
+                richColors
+                closeButton
+            />
             <Routes>
                 <Route path="/" element={<HomePage />} />
 
                 <Route
                     path="/*"
                     element={
-                        <ProtectedRoute>
-                            <DashboardRoutes />
-                        </ProtectedRoute>
+                        // <ProtectedRoute>
+                        <DashboardRoutes />
+                        // </ProtectedRoute>
                     }
                 />
             </Routes>

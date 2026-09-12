@@ -1,18 +1,21 @@
 import '../../assets/css/Reports.css';
+import { useTranslation } from 'react-i18next';
 
 const CIRCUMFERENCE = 251.2;
 
-const segments = [
-    { label: 'Thuê nhà', percent: 0.50, color: '#82c8fd', rotation: 0 },
-    { label: 'Tiền điện', percent: 0.30, color: '#6366f1', rotation: 180 },
-    { label: 'Tiền nước', percent: 0.15, color: '#f59e0b', rotation: 288 },
-    { label: 'Khác', percent: 0.05, color: 'rgba(255,255,255,0.2)', rotation: 342 },
-];
-
 const SpendingDonutChart = () => {
+    const { t } = useTranslation();
+
+    const segments = [
+        { label: t('reports.rent_label'), percent: 0.50, color: '#82c8fd', rotation: 0 },
+        { label: t('reports.summary_electric'), percent: 0.30, color: '#6366f1', rotation: 180 },
+        { label: t('reports.summary_water'), percent: 0.15, color: '#f59e0b', rotation: 288 },
+        { label: t('reports.other_label'), percent: 0.05, color: 'rgba(255,255,255,0.2)', rotation: 342 },
+    ];
+
     return (
         <div className="report-donut-card glass-panel">
-            <h3>Cơ cấu chi phí</h3>
+            <h3>{t('reports.cost_breakdown')}</h3>
 
             <div className="report-donut-wrapper">
                 <svg viewBox="0 0 100 100" width="100%" height="100%" style={{ transform: 'rotate(-90deg)' }}>
@@ -40,7 +43,7 @@ const SpendingDonutChart = () => {
                 </svg>
                 <div className="report-donut-center">
                     <span className="report-donut-center-value">14.5M ₫</span>
-                    <span className="report-donut-center-label">Tổng cộng</span>
+                    <span className="report-donut-center-label">{t('common.total')}</span>
                 </div>
             </div>
 

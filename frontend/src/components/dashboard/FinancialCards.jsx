@@ -1,7 +1,11 @@
 import '../../assets/css/FinancialCards.css';
 import TrendIcon from '../../ui/TrendIcon';
 import { ReceiptText, Zap, Droplet } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
 const FinancialCards = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="financial-summary-grid">
             {/* Điện */}
@@ -16,7 +20,7 @@ const FinancialCards = () => {
                     </span>
                 </div>
                 <div className="card-bottom">
-                    <p className="card-label">Tiêu thụ điện tháng này</p>
+                    <p className="card-label">{t('dashboard.electric_consumption')}</p>
                     <h3 className="card-value">342 <span>kWh</span></h3>
                 </div>
             </div>
@@ -33,7 +37,7 @@ const FinancialCards = () => {
                     </span>
                 </div>
                 <div className="card-bottom">
-                    <p className="card-label">Tiêu thụ nước tháng này</p>
+                    <p className="card-label">{t('dashboard.water_consumption')}</p>
                     <h3 className="card-value">12 <span>m³</span></h3>
                 </div>
             </div>
@@ -45,11 +49,11 @@ const FinancialCards = () => {
                        <ReceiptText />
                     </div>
                     <span className="trend-badge status-paid">
-                        Đã thanh toán
+                        {t('dashboard.paid')}
                     </span>
                 </div>
                 <div className="card-bottom">
-                    <p className="card-label">Hóa đơn kỳ trước</p>
+                    <p className="card-label">{t('dashboard.previous_invoice')}</p>
                     <h3 className="card-value">8,450,000 <span>VND</span></h3>
                 </div>
             </div>

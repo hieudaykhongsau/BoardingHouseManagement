@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { currentInvoice, bankInfo } from '../data/mockData';
-import { Check, ArrowLeft, Copy } from 'lucide-react'
+import { Check, ArrowLeft, Copy } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import '../assets/css/BankingPayment.css';
 
 const formatCurrency = (amount) =>
@@ -9,6 +10,7 @@ const formatCurrency = (amount) =>
 
 /* ── Copy Button ── */
 const CopyButton = ({ text }) => {
+    const { t } = useTranslation();
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -22,7 +24,7 @@ const CopyButton = ({ text }) => {
         <button
             className={`btn-copy ${copied ? 'copied' : ''}`}
             onClick={handleCopy}
-            title={copied ? 'Đã sao chép' : 'Sao chép'}
+            title={copied ? t('payment.copied') : t('payment.copy')}
         >
             {copied ? <Check size={20} /> : <Copy size={20} />}
         </button>
@@ -32,20 +34,20 @@ const CopyButton = ({ text }) => {
 /* ── Main Page ── */
 const BankingPayment = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleConfirm = () => {
-        alert('Đã ghi nhận xác nhận chuyển khoản. Chúng tôi sẽ kiểm tra trong vòng 1–2 giờ làm việc.');
+        alert(t('payment.confirm_alert'));
         navigate('/invoices');
     };
 
     return (
         <div className="vietqr-page">
-
             <div className="vietqr-inner">
                 {/* ── LEFT: Payment Details ── */}
                 <div className="vietqr-left">
                     <div className="payment-details-card glass-card">
-                        <h2>Chi tiết thanh toán</h2>
+                        <h2>{t('payment.details_title')}</h2>
 
                         <div className="payment-line-items">
                             {currentInvoice.items.map((item, idx) => (
@@ -57,7 +59,7 @@ const BankingPayment = () => {
                         </div>
 
                         <div className="payment-total-row">
-                            <span className="payment-total-label">Tổng cộng</span>
+                            <span className="payment-total-label">{t('payment.total')}</span>
                             <span className="payment-total-amount">{formatCurrency(currentInvoice.total)}</span>
                         </div>
                     </div>
@@ -66,11 +68,11 @@ const BankingPayment = () => {
                     <div className="vietqr-actions">
                         <button className="btn-confirm-transfer" onClick={handleConfirm}>
                             <Check />
-                            Xác nhận đã chuyển khoản
+                            {t('payment.confirm_transfer')}
                         </button>
                         <button className="btn-back-invoice" onClick={() => navigate('/invoices')}>
                             <ArrowLeft />
-                            Quay lại hóa đơn
+                            {t('payment.back_to_invoices')}
                         </button>
                     </div>
                 </div>
@@ -78,9 +80,9 @@ const BankingPayment = () => {
                 {/* ── RIGHT: VietQR ── */}
                 <div className="vietqr-right">
                     <div className="vietqr-card glass-card">
-                        <h2>Quét mã VietQR</h2>
+                        <h2>{t('payment.qr_title')}</h2>
                         <p className="vietqr-subtitle">
-                            Sử dụng ứng dụng ngân hàng để quét mã thanh toán
+                            {t('payment.qr_desc')}
                         </p>
 
                         {/* QR Code */}
@@ -99,12 +101,12 @@ const BankingPayment = () => {
                         {/* Bank Info */}
                         <div className="vietqr-bank-info">
                             <div className="bank-info-row">
-                                <span className="bank-info-label">Ngân hàng</span>
+                                <span className="bank-info-label">{t('payment.bank_name')}</span>
                                 <span className="bank-info-value">{bankInfo.bankName}</span>
                             </div>
 
                             <div className="bank-info-row">
-                                <span className="bank-info-label">Số tài khoản</span>
+                                <span className="bank-info-label">{t('payment.account_number')}</span>
                                 <div className="bank-info-value-row">
                                     <span className="bank-info-value tracking">{bankInfo.accountNumber}</span>
                                     <CopyButton text={bankInfo.accountNumber} />
@@ -112,12 +114,12 @@ const BankingPayment = () => {
                             </div>
 
                             <div className="bank-info-row">
-                                <span className="bank-info-label">Tên tài khoản</span>
+                                <span className="bank-info-label">{t('payment.account_holder')}</span>
                                 <span className="bank-info-value">{bankInfo.accountName}</span>
                             </div>
 
                             <div className="bank-info-row">
-                                <span className="bank-info-label">Nội dung chuyển khoản</span>
+                                <span className="bank-info-label">{t('payment.transfer_content')}</span>
                                 <div className="bank-info-value-row">
                                     <span className="bank-info-value mono">{bankInfo.transferContent}</span>
                                     <CopyButton text={bankInfo.transferContent} />
