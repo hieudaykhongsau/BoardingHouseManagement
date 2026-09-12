@@ -1,13 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/HomePage.css';
-import GoogleIcon from "../assets/google-icon.svg";
-import { CircleCheckBig, ReceiptText, ChartNoAxesCombined, Headset, Sparkles, LayoutDashboard, LogOut } from 'lucide-react';
+import { CircleCheckBig, ReceiptText, ChartNoAxesCombined, Headset, Sparkles } from 'lucide-react';
 import { useAuth } from '../auth/context/AuthContext';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import showToast from '../utils/toast';
 import { handleAuthError } from '../auth/utils/authErrorHandler';
-import LanguageToggle from '../components/common/LanguageToggle';
+import Header from '../components/common/Header';
+import Footer from '../components/common/Footer';
 
 const HomePage = () => {
     const { user, loginWithGoogle, logout } = useAuth();
@@ -37,57 +37,12 @@ const HomePage = () => {
 
     return (
         <div className="home-container">
-            {/* Navigation */}
-            <nav className="home-nav">
-                <div className="nav-inner">
-                    <Link to="/" className="nav-brand">
-                        <img src="/logo.png" alt="V-Rentals Logo" className="nav-logo" />
-                        <div className="nav-brand-text">
-                            <span>House</span>
-                            <span>Management</span>
-                        </div>
-                    </Link>
-                    <div className="nav-links">
-                        <a href="#features" className="nav-link">{t('nav.features')}</a>
-                        <a href="#pricing" className="nav-link">{t('nav.pricing')}</a>
-                        <a href="#about" className="nav-link">{t('nav.about')}</a>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <LanguageToggle />
-
-                        {user ? (
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <button
-                                    onClick={() => navigate('/dashboard')}
-                                    className="glass-button primary"
-                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px' }}
-                                >
-                                    <LayoutDashboard size={18} />
-                                    <span>{t('common.dashboard')}</span>
-                                </button>
-                                <button
-                                    onClick={handleLogout}
-                                    className="glass-button"
-                                    title={t('common.logout')}
-                                    style={{ display: 'inline-flex', alignItems: 'center', padding: '8px 12px' }}
-                                >
-                                    <LogOut size={18} />
-                                </button>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={handleGoogleLogin}
-                                disabled={isLoggingIn}
-                                className="glass-button primary"
-                                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', opacity: isLoggingIn ? 0.7 : 1, cursor: isLoggingIn ? 'wait' : 'pointer' }}
-                            >
-                                <img src={GoogleIcon} alt="Google Icon" style={{ width: '20px', height: '20px' }} />
-                                <span>{isLoggingIn ? t('auth.logging_in') : t('auth.login_google')}</span>
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </nav>
+            <Header
+                user={user}
+                isLoggingIn={isLoggingIn}
+                onGoogleLogin={handleGoogleLogin}
+                onLogout={handleLogout}
+            />
 
             <main className="home-main">
                 {/* Hero Section */}
@@ -195,20 +150,7 @@ const HomePage = () => {
                 </section>
             </main>
 
-            <footer className="home-footer">
-                <div className="footer-inner">
-                    <div className="footer-brand">
-                        <span className="text-title">V-Rentals</span>
-                        <p className="text-sm">{t('home.footer_rights')}</p>
-                    </div>
-
-                    <div className="footer-links">
-                        <a href="#">{t('home.footer_privacy')}</a>
-                        <a href="#">{t('home.footer_terms')}</a>
-                        <a href="#">{t('home.footer_contact')}</a>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };
